@@ -53,7 +53,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             min-height: 100vh;
-            overflow-x: hidden; /* фикс для горизонтального скролла на мобильных */
+            overflow-x: hidden;
         }
 
         /* ========== ВЕРХНИЙ ХЕДЕР ========== */
@@ -984,7 +984,8 @@
             to { opacity: 0; transform: translateY(20px); }
         }
 
-        /* ========== АДАПТИВНОСТЬ (исправлена) ========== */
+        /* ========== УЛУЧШЕННАЯ АДАПТИВНОСТЬ ДЛЯ СМАРТФОНОВ ========== */
+        /* Планшеты и небольшие экраны */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2rem;
@@ -1083,6 +1084,7 @@
             }
         }
 
+        /* Мобильные телефоны (до 480px) */
         @media (max-width: 480px) {
             .hero-title {
                 font-size: 1.5rem;
@@ -1130,6 +1132,109 @@
             .btn-primary, .btn-outline {
                 width: 100%;
                 justify-content: center;
+            }
+            /* Скрываем текст кнопки поиска, оставляем иконку */
+            .search-btn span {
+                display: none;
+            }
+            .search-btn {
+                padding: 12px 14px;
+            }
+            /* Уменьшаем отступы в хедере */
+            .header-inner {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .logo-text span {
+                font-size: 0.5rem;
+            }
+            .vin-badge {
+                padding: 6px 8px;
+                font-size: 0.7rem;
+            }
+            .cart-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .account-btn {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+            }
+            /* Навигация более компактная */
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+            /* Полоса доверия: перенос строк */
+            .trust-inner {
+                gap: 12px;
+                row-gap: 10px;
+            }
+            .trust-item {
+                font-size: 0.7rem;
+                gap: 6px;
+            }
+            .trust-item i {
+                font-size: 1rem;
+            }
+            /* Футер: центрирование */
+            .footer-grid {
+                text-align: center;
+            }
+            .footer-contact-item {
+                justify-content: center;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        /* Очень узкие экраны (≤360px) — одна колонка для товаров и категорий */
+        @media (max-width: 380px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-title {
+                font-size: 1.3rem;
+            }
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .disc-card h2 {
+                font-size: 1.1rem;
+            }
+            .disc-card .price {
+                font-size: 1.3rem;
+            }
+            .product-card {
+                max-width: 100%;
+            }
+            .product-title {
+                font-size: 0.85rem;
+            }
+            .product-price {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -1342,7 +1447,7 @@
         // Карточка с диском BBS SR 02
         function showDiscCard() {
             const container = document.getElementById('searchResultContainer');
-            const imgPath = 'https://israfil04.github.io/autoprofessional/bbs_sr_02.jpg'; // или 'bbs_sr_02.jpg' если картинка в корне
+            const imgPath = 'https://israfil04.github.io/autoprofessional/bbs_sr_02.jpg';
             container.innerHTML = `
                 <div class="disc-card">
                     <img src="${imgPath}" alt="BBS SR 02" onerror="this.src='https://images.unsplash.com/photo-1603584173870-7f23fdae1b7d?w=600&h=400&fit=crop'">
