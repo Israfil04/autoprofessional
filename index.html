@@ -53,6 +53,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             min-height: 100vh;
+            overflow-x: hidden; /* фикс для горизонтального скролла на мобильных */
         }
 
         /* ========== ВЕРХНИЙ ХЕДЕР ========== */
@@ -983,33 +984,153 @@
             to { opacity: 0; transform: translateY(20px); }
         }
 
-        /* Адаптивность */
+        /* ========== АДАПТИВНОСТЬ (исправлена) ========== */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; }
-            .hero-inner { flex-direction: column; text-align: center; }
-            .hero-subtitle { max-width: 100%; }
-            .hero-buttons { justify-content: center; }
-            .phone-mockup { width: 200px; height: 400px; }
-            .search-wrapper { order: 3; flex: 1 1 100%; }
-            .account-btn span { display: none; }
-            .account-btn { padding: 10px 14px; width: 44px; height: 44px; justify-content: center; }
-            .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-            .category-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-            .category-card { padding: 16px 8px 14px; }
-            .category-icon { width: 44px; height: 44px; font-size: 1.2rem; }
-            .category-name { font-size: 0.78rem; }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .hero-subtitle {
+                max-width: 100%;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .phone-mockup {
+                width: 200px;
+                height: 400px;
+            }
+            .header-inner {
+                gap: 12px;
+                padding: 12px 16px;
+            }
+            .search-wrapper {
+                order: 3;
+                flex: 1 1 100%;
+                min-width: 100%;
+            }
+            .account-btn span {
+                display: none;
+            }
+            .account-btn {
+                padding: 10px 14px;
+                width: 44px;
+                height: 44px;
+                justify-content: center;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+            }
+            .product-image-wrap {
+                height: 160px;
+                padding: 10px;
+            }
+            .product-info {
+                padding: 12px;
+            }
+            .product-title {
+                font-size: 0.85rem;
+            }
+            .product-price {
+                font-size: 1.1rem;
+            }
+            .add-to-cart-btn {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+            .disc-card {
+                padding: 20px;
+                margin: 20px;
+                max-width: calc(100% - 40px);
+            }
+            .disc-card h2 {
+                font-size: 1.4rem;
+            }
+            .disc-card .price {
+                font-size: 1.8rem;
+            }
+            .disc-card .btn-primary,
+            .disc-card .btn-outline {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .category-card {
+                padding: 16px 8px 14px;
+            }
+            .category-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+            .category-name {
+                font-size: 0.78rem;
+            }
+            .category-count {
+                font-size: 0.7rem;
+            }
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
         }
+
         @media (max-width: 480px) {
-            .hero-title { font-size: 1.5rem; }
-            .phone-mockup { width: 160px; height: 320px; }
-            .category-grid { grid-template-columns: repeat(2, 1fr); }
-            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .disc-card { padding: 20px; max-width: 90%; }
-            .disc-card h2 { font-size: 1.3rem; }
-            .disc-card .price { font-size: 1.8rem; }
-            .product-info { padding: 10px 12px 14px; }
-            .product-title { font-size: 0.8rem; }
-            .product-price { font-size: 1.1rem; }
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            .phone-mockup {
+                width: 160px;
+                height: 320px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .product-info {
+                padding: 8px;
+            }
+            .product-title {
+                font-size: 0.75rem;
+            }
+            .product-price {
+                font-size: 1rem;
+            }
+            .disc-card {
+                padding: 16px;
+                margin: 16px;
+                max-width: calc(100% - 32px);
+            }
+            .disc-card h2 {
+                font-size: 1.2rem;
+            }
+            .disc-card .price {
+                font-size: 1.5rem;
+            }
+            .disc-card .btn-primary,
+            .disc-card .btn-outline {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary, .btn-outline {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -1218,10 +1339,10 @@
             }).join('');
         }
 
-        // Новая карточка с диском BBS SR 02
+        // Карточка с диском BBS SR 02
         function showDiscCard() {
             const container = document.getElementById('searchResultContainer');
-            const imgPath = 'https://israfil04.github.io/autoprofessional/bbs_sr_02.jpg'; // ПРОВЕРЬТЕ ПУТЬ: либо 'bbs_sr_02.jpg', либо 'model/bbs_sr_02.jpg'
+            const imgPath = 'https://israfil04.github.io/autoprofessional/bbs_sr_02.jpg'; // или 'bbs_sr_02.jpg' если картинка в корне
             container.innerHTML = `
                 <div class="disc-card">
                     <img src="${imgPath}" alt="BBS SR 02" onerror="this.src='https://images.unsplash.com/photo-1603584173870-7f23fdae1b7d?w=600&h=400&fit=crop'">
