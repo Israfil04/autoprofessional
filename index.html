@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoprofessional – Премиум автозапчасти | Тёмная тема</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Autoprofessional – Премиум автозапчасти</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -617,6 +617,66 @@
             color: #888;
             font-size: 0.95rem;
         }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+        }
+        .category-card {
+            background: #1c1c1c;
+            border: 1px solid #2a2a2a;
+            border-radius: var(--radius-xl);
+            padding: 28px 18px 22px;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .category-card:hover {
+            border-color: var(--burgundy);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px rgba(139,0,0,0.2);
+            transform: translateY(-6px);
+            background: #242424;
+        }
+        .category-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 1.6rem;
+            transition: all var(--transition-slow);
+            position: relative;
+            z-index: 1;
+            color: var(--burgundy-light);
+            background: rgba(139,0,0,0.1);
+            border: 1px solid rgba(139,0,0,0.2);
+        }
+        .category-card:hover .category-icon {
+            background: rgba(139,0,0,0.2);
+            transform: scale(1.12);
+            border-color: var(--burgundy);
+        }
+        .category-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #ddd;
+            position: relative;
+            z-index: 1;
+        }
+        .category-count {
+            font-size: 0.78rem;
+            color: #777;
+            margin-top: 2px;
+            position: relative;
+            z-index: 1;
+        }
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -934,14 +994,22 @@
             .account-btn span { display: none; }
             .account-btn { padding: 10px 14px; width: 44px; height: 44px; justify-content: center; }
             .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+            .category-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+            .category-card { padding: 16px 8px 14px; }
+            .category-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+            .category-name { font-size: 0.78rem; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 1.5rem; }
             .phone-mockup { width: 160px; height: 320px; }
-            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .disc-card { padding: 20px; max-width: 90%; }
             .disc-card h2 { font-size: 1.3rem; }
             .disc-card .price { font-size: 1.8rem; }
+            .product-info { padding: 10px 12px 14px; }
+            .product-title { font-size: 0.8rem; }
+            .product-price { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -1150,18 +1218,20 @@
             }).join('');
         }
 
+        // Новая карточка с диском BBS SR 02
         function showDiscCard() {
             const container = document.getElementById('searchResultContainer');
+            const imgPath = 'model/bbs_sr_02.jpg'; // ПРОВЕРЬТЕ ПУТЬ: либо 'bbs_sr_02.jpg', либо 'model/bbs_sr_02.jpg'
             container.innerHTML = `
                 <div class="disc-card">
-                    <img src="model/bbs_sr_02.jpg" alt="Легкосплавный диск R17 Ford Focus 2">
-                    <h2>Легкосплавный диск R17</h2>
-                    <div class="article">Артикул: AP-WHL-1890-FD</div>
-                    <div class="price"><span class="old-price">24 990 ₽</span> 18 990 ₽</div>
+                    <img src="${imgPath}" alt="BBS SR 02" onerror="this.src='https://images.unsplash.com/photo-1603584173870-7f23fdae1b7d?w=600&h=400&fit=crop'">
+                    <h2>BBS SR 02</h2>
+                    <div class="article">Артикул: BBS-SR-02-18</div>
+                    <div class="price"><span class="old-price">24 990 ₽</span> 19 990 ₽</div>
                     <div class="stock">● В наличии – Готов к отправке</div>
-                    <p style="color: var(--gray-muted); margin-bottom: 20px;">Подходит для Ford Focus 2, Ford Mondeo, Volvo S40 (5x108)</p>
+                    <p style="color: var(--gray-muted); margin-bottom: 20px;">Размер: 18 дюймов. Разболтовка 5x112. Подходит для Audi, BMW, Mercedes.</p>
                     <div class="hero-buttons" style="justify-content: center; gap: 12px;">
-                        <button class="btn-primary" onclick="addToCart({ id: 'disc_ford', title: 'Легкосплавный диск R17 для Ford Focus 2', price: 18990, image: 'model/bbs_sr_02.jpg' })"><i class="fa-solid fa-cart-plus"></i> Купить</button>
+                        <button class="btn-primary" onclick="addToCart({ id: 'bbs_sr_02', title: 'BBS SR 02 диск 18\"', price: 19990, image: '${imgPath}' })">Купить</button>
                         <a href="ar.html" class="btn-outline"><i class="fa-solid fa-camera"></i> Примерить в AR</a>
                     </div>
                 </div>
@@ -1171,17 +1241,15 @@
         function performSearch() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const hero = document.getElementById('heroSection');
-            if(query.includes('диск') || query.includes('колесный диск') || query.includes('легкосплавный диск') || query.includes('wheel') || query.includes('тормозной диск') || query.includes('диск с суппортом') || query.includes('brake disc')) {
+            if (query.includes('диск') || query.includes('bbs') || query.includes('колесный') || query.includes('легкосплавный')) {
                 showDiscCard();
-                if (hero) hero.classList.add('hidden');
-                showToast(`<i class="fa-solid fa-magnifying-glass"></i> Найден легкосплавный диск для Ford Focus 2`);
+                hero.classList.add('hidden');
+                showToast('🔍 Найден диск BBS SR 02');
             } else {
                 const container = document.getElementById('searchResultContainer');
                 if (container) container.innerHTML = '';
-                if (hero) hero.classList.remove('hidden');
-                if(query !== "") {
-                    showToast(`<i class="fa-solid fa-magnifying-glass"></i> Поиск: «${query.substring(0,50)}» — показаны лидеры продаж`);
-                }
+                hero.classList.remove('hidden');
+                if (query) showToast(`🔍 Поиск: "${query}" – показаны лидеры продаж`);
             }
         }
 
@@ -1198,13 +1266,13 @@
             renderProductsGrid();
 
             document.getElementById('searchBtn').addEventListener('click', performSearch);
-            document.getElementById('searchInput').addEventListener('keydown', e => { if(e.key === 'Enter') performSearch(); });
+            document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') performSearch(); });
             document.getElementById('vinSearchBtn').addEventListener('click', () => {
                 const vin = prompt('Введите VIN-код:');
-                if(vin && vin.length >= 11) {
+                if (vin && vin.length >= 11) {
                     document.getElementById('searchInput').value = 'VIN: ' + vin.toUpperCase();
                     performSearch();
-                } else if(vin) alert('Введите корректный VIN');
+                } else if (vin) alert('Введите корректный VIN');
             });
             document.getElementById('cartBtn').addEventListener('click', () => {
                 window.location.href = 'cart.html';
