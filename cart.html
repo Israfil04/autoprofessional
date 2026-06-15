@@ -2,37 +2,31 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Корзина – Autoprofessional</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Копируем стили из index.html (короткая версия, только нужное) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
         :root {
             --burgundy: #8B0000;
             --burgundy-light: #A52A2A;
-            --burgundy-dark: #5A0000;
-            --burgundy-glow: rgba(139, 0, 0, 0.4);
-            --black-primary: #0a0a0a;
-            --black-secondary: #111111;
-            --dark-card: #1c1c1c;
-            --pure-white: #ffffff;
-            --gray-muted: #777;
-            --shadow-sm: 0 2px 5px rgba(0,0,0,0.6);
-            --radius-xl: 20px;
-            --transition: 0.2s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--black-primary);
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
+        /* Шапка (упрощённая) */
         .top-header {
-            background: var(--black-secondary);
+            background: #111;
             border-bottom: 1px solid #2a2a2a;
             position: sticky;
             top: 0;
@@ -44,6 +38,7 @@
             padding: 12px 24px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -52,7 +47,6 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            flex-shrink: 0;
         }
         .logo-icon {
             width: 44px;
@@ -68,24 +62,15 @@
         .logo-text {
             font-weight: 800;
             font-size: 1.35rem;
-            color: var(--pure-white);
+            color: white;
         }
         .logo-text span {
             display: block;
             font-size: 0.7rem;
-            font-weight: 500;
             text-transform: uppercase;
             color: var(--burgundy-light);
         }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-shrink: 0;
-            margin-left: auto;
-        }
         .cart-btn {
-            position: relative;
             background: transparent;
             border: 2px solid #444;
             border-radius: 50%;
@@ -94,9 +79,7 @@
             cursor: pointer;
             font-size: 1.2rem;
             color: #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
         }
         .cart-count {
             position: absolute;
@@ -104,14 +87,13 @@
             right: -6px;
             background: var(--burgundy);
             color: white;
-            font-size: 0.7rem;
-            font-weight: 700;
             width: 22px;
             height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.7rem;
         }
         .account-btn {
             background: transparent;
@@ -120,11 +102,11 @@
             padding: 10px 18px;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 7px;
         }
+        /* Основное содержимое */
         .cart-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -133,20 +115,18 @@
         }
         .cart-title {
             font-size: 2rem;
-            font-weight: 800;
             margin-bottom: 30px;
-            color: var(--pure-white);
         }
         .cart-items {
-            background: var(--dark-card);
-            border-radius: var(--radius-xl);
+            background: #1c1c1c;
+            border-radius: 20px;
             overflow: hidden;
         }
         .cart-header {
             display: grid;
             grid-template-columns: 3fr 1fr 1fr 1fr 0.5fr;
-            padding: 15px 20px;
             background: #2a2a2a;
+            padding: 15px 20px;
             font-weight: 600;
             border-bottom: 1px solid #444;
         }
@@ -168,17 +148,9 @@
             object-fit: cover;
             border-radius: 10px;
         }
-        .cart-item-title {
-            font-weight: 500;
-        }
         .cart-item-price, .cart-item-total {
             color: var(--burgundy-light);
             font-weight: 700;
-        }
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         .quantity-btn {
             background: #333;
@@ -189,7 +161,7 @@
             border-radius: 50%;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.2s;
+            margin: 0 4px;
         }
         .quantity-btn:hover {
             background: var(--burgundy);
@@ -200,18 +172,13 @@
             color: #ff4444;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: 0.2s;
-        }
-        .remove-btn:hover {
-            color: #ff8888;
-            transform: scale(1.1);
         }
         .cart-summary {
             margin-top: 30px;
             text-align: right;
-            background: var(--dark-card);
+            background: #1c1c1c;
             padding: 20px;
-            border-radius: var(--radius-xl);
+            border-radius: 20px;
         }
         .cart-total {
             font-size: 1.5rem;
@@ -223,13 +190,8 @@
         .empty-cart {
             text-align: center;
             padding: 60px 20px;
-            background: var(--dark-card);
-            border-radius: var(--radius-xl);
-        }
-        .empty-cart i {
-            font-size: 4rem;
-            color: #555;
-            margin-bottom: 20px;
+            background: #1c1c1c;
+            border-radius: 20px;
         }
         .btn-checkout {
             background: var(--burgundy);
@@ -238,14 +200,8 @@
             padding: 14px 32px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
             margin-top: 20px;
-            transition: 0.2s;
-        }
-        .btn-checkout:hover {
-            background: var(--burgundy-dark);
-            transform: translateY(-2px);
+            cursor: pointer;
         }
         .btn-continue {
             background: transparent;
@@ -253,51 +209,16 @@
             color: var(--burgundy-light);
             padding: 12px 28px;
             border-radius: 50px;
-            font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
             text-decoration: none;
             display: inline-block;
         }
-        .btn-continue:hover {
-            background: rgba(139,0,0,0.1);
-        }
-        .site-footer {
+        .footer {
             background: #0a0a0a;
             padding: 40px 24px 20px;
             border-top: 1px solid #222;
             margin-top: 60px;
-        }
-        .footer-grid {
-            max-width: 1320px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-        }
-        .footer-col h4 {
-            color: #f0f0f0;
-            margin-bottom: 16px;
-        }
-        .footer-col ul {
-            list-style: none;
-        }
-        .footer-col ul li {
-            margin-bottom: 8px;
-        }
-        .footer-col ul li a {
-            color: #999;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-        .footer-bottom {
-            max-width: 1320px;
-            margin: 20px auto 0;
-            border-top: 1px solid #222;
-            padding-top: 20px;
             text-align: center;
-            font-size: 0.75rem;
-            color: #666;
         }
         @media (max-width: 768px) {
             .cart-header { display: none; }
@@ -307,103 +228,75 @@
                 text-align: center;
             }
             .cart-item-info { justify-content: center; }
-            .cart-item-quantity { justify-content: center; }
+            .quantity-btn { margin: 0 8px; }
             .cart-summary { text-align: center; }
         }
     </style>
 </head>
 <body>
-
     <header class="top-header">
         <div class="header-inner">
             <a href="index.html" class="logo">
                 <div class="logo-icon"><i class="fa-solid fa-gear"></i></div>
                 <div class="logo-text">Autoprofessional<span>Премиум автозапчасти</span></div>
             </a>
-            <div class="header-actions">
-                <button class="cart-btn" id="cartBtn">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
+            <div style="display: flex; gap: 16px;">
+                <button class="cart-btn" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
                 <button class="account-btn"><i class="fa-solid fa-user"></i> <span>Аккаунт</span></button>
             </div>
         </div>
     </header>
 
-    <div class="cart-container" id="cartContainer">
-        <!-- сюда будет динамически загружаться корзина -->
-    </div>
+    <div class="cart-container" id="cartContainer"></div>
 
-    <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col"><h4>Autoprofessional</h4><p style="font-size:0.85rem;color:#888;">Качественные автозапчасти с 2026 года.</p></div>
-            <div class="footer-col"><h4>Быстрые ссылки</h4><ul><li><a href="#">О нас</a></li><li><a href="#">Контакты</a></li><li><a href="#">Доставка</a></li><li><a href="#">Возврат</a></li></ul></div>
-            <div class="footer-col"><h4>Категории</h4><ul><li><a href="#">Двигатель</a></li><li><a href="#">Тормоза</a></li><li><a href="#">Подвеска</a></li><li><a href="#">Электрика</a></li></ul></div>
-            <div class="footer-col"><h4>Контакты</h4><div><i class="fa-solid fa-phone"></i> +7 (800) 555-АВТО</div></div>
-        </div>
-        <div class="footer-bottom">© 2026 Autoprofessional</div>
+    <footer class="footer">
+        <p style="color:#888;">© 2026 Autoprofessional — все права защищены</p>
     </footer>
 
     <script>
         let cart = [];
-
         function loadCart() {
             const saved = localStorage.getItem('autoprofessional_cart');
-            if (saved) {
-                try {
-                    cart = JSON.parse(saved);
-                } catch(e) { cart = []; }
-            } else {
-                cart = [];
-            }
+            if (saved) cart = JSON.parse(saved);
+            else cart = [];
             updateCartCount();
             renderCart();
         }
-
         function saveCart() {
             localStorage.setItem('autoprofessional_cart', JSON.stringify(cart));
             updateCartCount();
             renderCart();
         }
-
         function updateCartCount() {
-            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const countEl = document.getElementById('cartCount');
-            if (countEl) countEl.textContent = total;
+            const total = cart.reduce((s, i) => s + i.quantity, 0);
+            const el = document.getElementById('cartCount');
+            if (el) el.innerText = total;
         }
-
         function updateQuantity(id, delta) {
-            const item = cart.find(i => i.id == id);
-            if (item) {
-                item.quantity += delta;
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.id != id);
-                }
+            const idx = cart.findIndex(i => i.id == id);
+            if (idx !== -1) {
+                cart[idx].quantity += delta;
+                if (cart[idx].quantity <= 0) cart.splice(idx, 1);
                 saveCart();
             }
         }
-
         function removeItem(id) {
             cart = cart.filter(i => i.id != id);
             saveCart();
         }
-
         function renderCart() {
             const container = document.getElementById('cartContainer');
             if (!container) return;
-
             if (cart.length === 0) {
                 container.innerHTML = `
                     <div class="empty-cart">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping" style="font-size: 4rem; color: #555;"></i>
                         <h3>Корзина пуста</h3>
                         <p>Добавьте товары из каталога</p>
-                        <a href="index.html" class="btn-continue" style="margin-top:20px; display:inline-block;">← Вернуться к покупкам</a>
-                    </div>
-                `;
+                        <a href="index.html" class="btn-continue">← Вернуться к покупкам</a>
+                    </div>`;
                 return;
             }
-
             let total = 0;
             const itemsHtml = cart.map(item => {
                 const itemTotal = item.price * item.quantity;
@@ -411,50 +304,35 @@
                 return `
                     <div class="cart-item">
                         <div class="cart-item-info">
-                            <img src="${item.image}" alt="${item.title}">
-                            <div class="cart-item-title">${item.title}</div>
+                            <img src="${item.image}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1603584173870-7f23fdae1b7d?w=100&h=100&fit=crop'">
+                            <div>${item.title}</div>
                         </div>
                         <div class="cart-item-price">${item.price.toLocaleString('ru-RU')} ₽</div>
-                        <div class="cart-item-quantity">
+                        <div>
                             <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">−</button>
-                            <span>${item.quantity}</span>
+                            <span style="margin:0 8px;">${item.quantity}</span>
                             <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
                         </div>
                         <div class="cart-item-total">${itemTotal.toLocaleString('ru-RU')} ₽</div>
                         <div><button class="remove-btn" onclick="removeItem('${item.id}')"><i class="fa-solid fa-trash"></i></button></div>
-                    </div>
-                `;
+                    </div>`;
             }).join('');
-
             container.innerHTML = `
                 <h1 class="cart-title">Корзина</h1>
                 <div class="cart-items">
                     <div class="cart-header">
-                        <div>Товар</div>
-                        <div>Цена</div>
-                        <div>Количество</div>
-                        <div>Сумма</div>
-                        <div></div>
+                        <div>Товар</div><div>Цена</div><div>Количество</div><div>Сумма</div><div></div>
                     </div>
                     ${itemsHtml}
                 </div>
                 <div class="cart-summary">
                     <div class="cart-total">Общая сумма: <span>${total.toLocaleString('ru-RU')} ₽</span></div>
                     <button class="btn-checkout" onclick="alert('Оформление заказа – демо-режим')">Оформить заказ</button>
-                    <div style="margin-top:15px;">
-                        <a href="index.html" class="btn-continue">← Продолжить покупки</a>
-                    </div>
-                </div>
-            `;
+                    <div style="margin-top:15px;"><a href="index.html" class="btn-continue">← Продолжить покупки</a></div>
+                </div>`;
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCart();
-            document.getElementById('cartBtn').addEventListener('click', () => {
-                // на странице корзины эта кнопка просто перезагружает
-                window.location.reload();
-            });
-        });
+        document.addEventListener('DOMContentLoaded', loadCart);
+        document.getElementById('cartBtn').addEventListener('click', () => window.location.reload());
     </script>
 </body>
 </html>
