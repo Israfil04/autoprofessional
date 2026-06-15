@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автопрофессионал | Тормозные колодки</title>
+    <style>
+        :root {
+            --bg: #080808;
+            --card: #1a1a1a;
+            --burgundy: #8b1a2b;
+            --burgundy-light: #a52235;
+            --text: #f0f0f0;
+            --muted: #7a7a7a;
+            --border: #2a2a2a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh;
+        }
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+        }
+        .product-card h2 {
+            font-size: 1.8rem; font-weight: 700; margin-bottom: 8px;
+        }
+        .article {
+            color: var(--burgundy-light); font-weight: 600; margin-bottom: 16px;
+        }
+        .price {
+            font-size: 2.5rem; font-weight: 800; color: var(--burgundy-light);
+            margin: 12px 0;
+        }
+        .old-price {
+            color: var(--muted); text-decoration: line-through;
+            margin-right: 10px; font-size: 1.2rem;
+        }
+        .stock {
+            color: #4caf50; font-size: 0.9rem; margin: 10px 0 20px;
+        }
+        .btn-3d {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--burgundy); color: #fff; border: none;
+            padding: 14px 28px; border-radius: 10px; font-weight: 600;
+            font-size: 1rem; cursor: pointer; text-decoration: none;
+            box-shadow: 0 6px 18px rgba(139, 26, 43, 0.4);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-3d:hover {
+            background: var(--burgundy-light); transform: translateY(-2px);
+        }
+        .btn-3d svg { flex-shrink: 0; }
+    </style>
+</head>
+<body>
+    <div class="product-card">
+        <h2>Премиум керамические тормозные колодки</h2>
+        <div class="article">Артикул: AP-BP-2024-CR</div>
+        <div class="price">
+            <span class="old-price">$119.99</span>
+            $89.99
+        </div>
+        <div class="stock">● В наличии – Готов к отправке</div>
+        <p style="color: var(--muted); margin-bottom: 20px;">BMW F30 / F32 • 2012–2020</p>
+
+        <!-- Кнопка ведёт на страницу 3D-просмотра -->
+        <a href="viewer.html" class="btn-3d">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Смотреть в 3D
+        </a>
+    </div>
+</body>
+</html>

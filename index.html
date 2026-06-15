@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoprofessional – Премиум автозапчасти | Тёмная тема</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --burgundy: #8B0000;
+            --burgundy-light: #A52A2A;
+            --burgundy-dark: #5A0000;
+            --burgundy-glow: rgba(139, 0, 0, 0.4);
+            --black-primary: #0a0a0a;
+            --black-secondary: #111111;
+            --dark-card: #1c1c1c;
+            --dark-card-hover: #242424;
+            --dark-gray: #2a2a2a;
+            --gray-text: #b0b0b0;
+            --gray-muted: #777;
+            --white: #f1f1f1;
+            --pure-white: #ffffff;
+            --shadow-sm: 0 2px 5px rgba(0,0,0,0.6);
+            --shadow-md: 0 6px 15px rgba(0,0,0,0.7);
+            --shadow-lg: 0 12px 28px rgba(0,0,0,0.8);
+            --radius-sm: 6px;
+            --radius: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--black-primary);
+            color: #e0e0e0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        /* ========== ВЕРХНИЙ ХЕДЕР ========== */
+        .top-header {
+            background: var(--black-secondary);
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            transition: box-shadow var(--transition);
+        }
+        .top-header.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.9);
+        }
+
+        .header-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform var(--transition);
+        }
+        .logo:hover {
+            transform: scale(1.03);
+        }
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 4px 15px var(--burgundy-glow);
+        }
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--pure-white);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+        .logo-text span {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--burgundy-light);
+        }
+
+        .search-wrapper {
+            flex: 1;
+            min-width: 280px;
+            width: 100%;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .search-container:focus-within {
+            border-color: var(--burgundy);
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.15);
+            background: #222;
+        }
+        .search-container input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 13px 18px;
+            font-size: 0.95rem;
+            background: transparent;
+            color: #e0e0e0;
+        }
+        .search-container input::placeholder {
+            color: #777;
+        }
+        .vin-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #2a2a2a;
+            color: #ccc;
+            padding: 8px 14px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            border-radius: 50px;
+            margin-right: 4px;
+            border: 1px solid #444;
+            transition: all var(--transition);
+        }
+        .vin-badge:hover {
+            background: #3a3a3a;
+            border-color: var(--burgundy);
+            color: white;
+        }
+        .vin-badge i {
+            color: var(--burgundy-light);
+        }
+        .search-btn {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            border-radius: 50px;
+            margin: 3px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px var(--burgundy-glow);
+        }
+        .search-btn:hover {
+            background: var(--burgundy-dark);
+            transform: translateY(-1px);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+        .cart-btn {
+            position: relative;
+            background: transparent;
+            border: 2px solid #444;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #ccc;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-btn:hover {
+            border-color: var(--burgundy);
+            color: var(--burgundy-light);
+            transform: translateY(-2px);
+        }
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--burgundy);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(139,0,0,0.7);
+            animation: pulse-badge 2s infinite;
+        }
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        .account-btn {
+            background: transparent;
+            color: #ccc;
+            border: 1px solid #444;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .account-btn:hover {
+            border-color: var(--burgundy);
+            color: white;
+            background: rgba(139,0,0,0.1);
+        }
+
+        /* ========== НАВИГАЦИЯ ========== */
+        .nav-strip {
+            background: var(--black-secondary);
+            border-bottom: 1px solid #222;
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4px;
+            overflow-x: auto;
+            padding: 8px 0;
+            scrollbar-width: none;
+        }
+        .nav-inner::-webkit-scrollbar { display: none; }
+        .nav-link {
+            text-decoration: none;
+            color: #999;
+            font-weight: 500;
+            font-size: 0.88rem;
+            padding: 8px 8px;
+            border-radius: 50px;
+            white-space: nowrap;
+            transition: all var(--transition);
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--pure-white);
+            background: var(--burgundy);
+            font-weight: 600;
+            box-shadow: 0 2px 8px var(--burgundy-glow);
+            transform: translateY(-1px);
+        }
+
+        /* ========== HERO-БЛОК ========== */
+        .hero-section {
+            background: radial-gradient(ellipse at 80% 20%, rgba(139,0,0,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 20% 80%, rgba(50,0,0,0.2) 0%, transparent 60%),
+                        var(--black-primary);
+            padding: 50px 24px 60px;
+            position: relative;
+            overflow: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .hero-section.hidden {
+            display: none;
+        }
+        .hero-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1c1c1c;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--burgundy-light);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--burgundy-light);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(139,0,0,0.8); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 12px rgba(139,0,0,0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--pure-white);
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--burgundy-light), #c44);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 28px;
+            max-width: 480px;
+            line-height: 1.6;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px var(--burgundy-glow);
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: var(--burgundy-dark);
+            box-shadow: 0 10px 30px rgba(139,0,0,0.7);
+            transform: translateY(-3px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #ccc;
+            border: 2px solid #444;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            border-color: var(--burgundy);
+            color: var(--burgundy-light);
+            box-shadow: 0 0 15px rgba(139,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        .hero-phone {
+            flex-shrink: 0;
+            position: relative;
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            25% { transform: translateY(-14px); }
+            50% { transform: translateY(-6px); }
+            75% { transform: translateY(-18px); }
+        }
+        .phone-mockup {
+            width: 260px;
+            height: 520px;
+            background: #111;
+            border-radius: 36px;
+            padding: 14px;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.9), 0 0 0 6px #2a2a2a, 0 0 0 10px #111;
+            position: relative;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1e0a0a 0%, #2d0808 40%, #1a0000 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid #5a0000;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 22px;
+            background: #0a0a0a;
+            border-radius: 0 0 14px 14px;
+            z-index: 2;
+            border: 1px solid #2a0000;
+        }
+        .ar-3d-part {
+            width: 140px;
+            height: 180px;
+            background: radial-gradient(ellipse at center, rgba(139,0,0,0.3) 0%, rgba(0,0,0,0.6) 70%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotate3d 8s linear infinite;
+            transform-style: preserve-3d;
+        }
+        @keyframes rotate3d {
+            0% { transform: perspective(400px) rotateY(0deg) rotateX(5deg); }
+            100% { transform: perspective(400px) rotateY(360deg) rotateX(5deg); }
+        }
+        .ar-3d-part .part-shape {
+            width: 100px;
+            height: 130px;
+            background: linear-gradient(180deg, #4a3a3a 0%, #3a2a2a 50%, #2a1a1a 100%);
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 2px 0 rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #5a4040;
+        }
+        .part-shape i {
+            font-size: 36px;
+            color: var(--burgundy-light);
+            z-index: 1;
+            text-shadow: 0 0 15px var(--burgundy-glow);
+        }
+        .ar-label {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--burgundy-dark);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 3;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+        }
+        .ar-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(rgba(139,0,0,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139,0,0,0.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            border-radius: 24px;
+        }
+
+        /* ========== КАРТОЧКА ТОВАРА (ДИСК) ========== */
+        .disc-card {
+            background: var(--dark-card);
+            border: 1px solid #2a2a2a;
+            border-radius: var(--radius-2xl);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            box-shadow: var(--shadow-lg);
+        }
+        .disc-card img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            margin-bottom: 20px;
+        }
+        .disc-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--pure-white);
+        }
+        .disc-card .article {
+            color: var(--burgundy-light);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .disc-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--burgundy-light);
+            margin: 12px 0;
+        }
+        .disc-card .old-price {
+            color: var(--gray-muted);
+            text-decoration: line-through;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .disc-card .stock {
+            color: #4caf50;
+            font-size: 0.9rem;
+            margin: 10px 0 20px;
+        }
+
+        /* ========== ЛИДЕРЫ ПРОДАЖ ========== */
+        .products-section {
+            background: #0d0d0d;
+            padding: 50px 0;
+        }
+        .section-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .section-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--burgundy-light);
+            margin-bottom: 6px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f0f0f0;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .section-subtitle {
+            color: #888;
+            font-size: 0.95rem;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: #1c1c1c;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: all var(--transition-slow);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9), 0 0 20px rgba(139,0,0,0.15);
+            transform: translateY(-4px);
+            border-color: #444;
+        }
+        .product-image-wrap {
+            position: relative;
+            background: #141414;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .product-image-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform var(--transition-slow);
+        }
+        .product-card:hover .product-image-wrap img {
+            transform: scale(1.08);
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--burgundy);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            z-index: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .product-badge.sale {
+            background: #b22222;
+        }
+        .wishlist-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #2a2a2a;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            z-index: 1;
+        }
+        .wishlist-btn:hover {
+            color: var(--burgundy-light);
+            background: #333;
+            transform: scale(1.1);
+        }
+        .product-info {
+            padding: 16px 18px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-brand {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .product-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: #c49b1d;
+        }
+        .product-rating span {
+            color: #777;
+            font-size: 0.75rem;
+            margin-left: 4px;
+        }
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            margin-top: auto;
+        }
+        .product-price {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--burgundy-light);
+            letter-spacing: -0.5px;
+        }
+        .product-old-price {
+            font-size: 0.85rem;
+            color: #666;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+        .add-to-cart-btn {
+            width: 100%;
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(139,0,0,0.4);
+        }
+        .add-to-cart-btn:hover {
+            background: var(--burgundy-dark);
+            transform: translateY(-2px);
+        }
+        .add-to-cart-btn.added {
+            background: #2e7d32;
+            pointer-events: none;
+        }
+
+        /* ========== ПОЛОСА ДОВЕРИЯ ========== */
+        .trust-strip {
+            background: #111;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 20px 0;
+        }
+        .trust-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .trust-item i {
+            font-size: 1.3rem;
+            color: var(--burgundy-light);
+        }
+
+        /* ========== ФУТЕР ========== */
+        .site-footer {
+            background: #0a0a0a;
+            color: #aaa;
+            padding: 50px 24px 30px;
+            border-top: 1px solid #222;
+        }
+        .footer-grid {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .footer-col h4 {
+            color: #f0f0f0;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        .footer-col ul li a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color var(--transition);
+        }
+        .footer-col ul li a:hover {
+            color: var(--burgundy-light);
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.88rem;
+        }
+        .footer-contact-item i {
+            color: var(--burgundy-light);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.82rem;
+            color: #666;
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1c1c1c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            text-decoration: none;
+            transition: all var(--transition);
+            font-size: 0.95rem;
+            border: 1px solid #2a2a2a;
+        }
+        .footer-social a:hover {
+            background: var(--burgundy);
+            color: white;
+            transform: translateY(-3px);
+            border-color: var(--burgundy);
+        }
+
+        /* Уведомления */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1c1c1c;
+            border: 1px solid var(--burgundy-dark);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            animation: slideInUp 0.4s ease-out, fadeOut 0.4s 2.6s ease-out forwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(80px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-inner { flex-direction: column; text-align: center; }
+            .hero-subtitle { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .phone-mockup { width: 200px; height: 400px; }
+            .search-wrapper { order: 3; flex: 1 1 100%; }
+            .account-btn span { display: none; }
+            .account-btn { padding: 10px 14px; width: 44px; height: 44px; justify-content: center; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.5rem; }
+            .phone-mockup { width: 160px; height: 320px; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .disc-card { padding: 20px; max-width: 90%; }
+            .disc-card h2 { font-size: 1.3rem; }
+            .disc-card .price { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header" id="topHeader">
+        <div class="header-inner">
+            <a href="#" class="logo" id="logoLink">
+                <div class="logo-icon"><i class="fa-solid fa-gear"></i></div>
+                <div class="logo-text">Autoprofessional<span>Премиум автозапчасти</span></div>
+            </a>
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Поиск запчастей, брендов или VIN...">
+                    <span class="vin-badge" id="vinSearchBtn"><i class="fa-solid fa-fingerprint"></i> VIN</span>
+                    <button class="search-btn" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> <span>Найти</span></button>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="cart-btn" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
+                <button class="account-btn"><i class="fa-solid fa-user"></i> <span>Аккаунт</span></button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-strip">
+        <div class="nav-inner">
+            <a href="#" class="nav-link active" data-category="all">Все запчасти</a>
+            <a href="#" class="nav-link" data-category="original">Оригинал</a>
+            <a href="#" class="nav-link" data-category="engine">Двигатель</a>
+            <a href="#" class="nav-link" data-category="brakes">Тормоза</a>
+            <a href="#" class="nav-link" data-category="suspension">Подвеска</a>
+            <a href="#" class="nav-link" data-category="electrics">Электрика</a>
+            <a href="#" class="nav-link" data-category="accessories">Аксессуары</a>
+            <a href="#" class="nav-link" data-category="sales">Акции</a>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="heroSection">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge"><span class="dot"></span> Новая AR-технология</div>
+                <h1 class="hero-title">Примерьте <span class="highlight">AR</span>, чтобы увидеть деталь на своём авто</h1>
+                <p class="hero-subtitle">Наведите телефон и оцените, как любая деталь смотрится на автомобиле в реальном времени. Точный подбор без ошибок.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" id="tryArBtn"><i class="fa-solid fa-camera"></i> Запустить AR</a>
+                    <a href="#" class="btn-outline"><i class="fa-solid fa-circle-play"></i> Как это работает</a>
+                </div>
+            </div>
+            <div class="hero-phone">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="ar-grid-overlay"></div>
+                        <div class="ar-3d-part"><div class="part-shape"><i class="fa-solid fa-car-side"></i></div></div>
+                        <div class="ar-label"><i class="fa-solid fa-cube"></i> 3D-предпросмотр</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="searchResultContainer" style="max-width:1320px; margin:0 auto; padding:0 24px;"></div>
+
+    <section class="products-section">
+        <div class="section-container" style="padding-top:0;">
+            <div class="section-header">
+                <div class="section-label">Популярное</div>
+                <h2 class="section-title">Лидеры продаж</h2>
+                <p class="section-subtitle">Качественные запчасти, которым доверяют профессионалы</p>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="trust-strip">
+        <div class="trust-inner">
+            <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Быстрая и бесплатная доставка</div>
+            <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Гарантия 2 года</div>
+            <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> Лёгкий возврат 30 дней</div>
+            <div class="trust-item"><i class="fa-solid fa-headset"></i> Поддержка 24/7</div>
+            <div class="trust-item"><i class="fa-solid fa-certificate"></i> Сертифицированное качество</div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Autoprofessional</h4>
+                <p style="font-size:0.88rem;color:#888;margin-bottom:8px;">Ваш надёжный источник качественных автозапчастей с 2026 года.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Быстрые ссылки</h4>
+                <ul><li><a href="#">О нас</a></li><li><a href="#">Контакты</a></li><li><a href="#">Доставка</a></li><li><a href="#">Возврат</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Категории</h4>
+                <ul><li><a href="#">Двигатель</a></li><li><a href="#">Тормозная система</a></li><li><a href="#">Подвеска</a></li><li><a href="#">Электрика</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Москва, ул. Автозапчастей, 10</span></div>
+                <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+7 (800) 555-АВТО</span></div>
+                <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>support@autoprofessional.ru</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><span></span><span><a href="#" style="color:#666;">Политика конфиденциальности</a> | <a href="#" style="color:#666;">Условия использования</a></span></div>
+    </footer>
+
+    <script>
+        // Товары для главной (лидеры продаж)
+        const products = [
+            { id:1, brand:'BOSCH', title:'Премиальные тормозные колодки – керамика, низкое пыление', price:8990, oldPrice:11990, rating:4.8, reviews:234, badge:'Хит', image:'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop' },
+            { id:2, brand:'DENSO', title:'Иридиевые свечи зажигания – 6 шт., высокая производительность', price:5490, oldPrice:7290, rating:4.9, reviews:412, badge:'Рейтинг', image:'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop' },
+            { id:3, brand:'KYB', title:'Газовый амортизатор Excel-G – передняя пара, OEM', price:14250, oldPrice:18900, rating:4.7, reviews:178, badge:'Скидка', badgeClass:'sale', image:'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop' },
+            { id:4, brand:'MANN-FILTER', title:'Масляный фильтр – высокая эффективность', price:1899, oldPrice:2499, rating:4.6, reviews:89, badge:'', image:'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop' },
+            { id:5, brand:'VALEO', title:'Генератор 150А – восстановленный, гарантия 3 года', price:21900, oldPrice:29990, rating:4.5, reviews:56, badge:'Выгода', image:'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=400&h=300&fit=crop' },
+            { id:6, brand:'MOOG', title:'Рычаг подвески в сборе – с шаровой опорой', price:12875, oldPrice:null, rating:4.8, reviews:201, badge:'', image:'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=400&h=300&fit=crop' },
+            { id:7, brand:'NGK', title:'Кислородный датчик – верхний, прямая установка', price:6799, oldPrice:8999, rating:4.7, reviews:145, badge:'Популярный', image:'https://images.unsplash.com/photo-1631545852477-c6b8f2f3e0e1?w=400&h=300&fit=crop' },
+            { id:8, brand:'GATES', title:'Поликлиновой ремень – усиленный', price:3499, oldPrice:null, rating:4.4, reviews:312, badge:'', image:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop' }
+        ];
+
+        let cart = [];
+
+        function loadCart() {
+            const saved = localStorage.getItem('autoprofessional_cart');
+            if (saved) {
+                try {
+                    cart = JSON.parse(saved);
+                } catch(e) { cart = []; }
+            } else {
+                cart = [];
+            }
+            updateCartCount();
+        }
+
+        function saveCart() {
+            localStorage.setItem('autoprofessional_cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const countEl = document.getElementById('cartCount');
+            if (!countEl) return;
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.textContent = total;
+        }
+
+        function addToCart(product) {
+            const existing = cart.find(item => item.id == product.id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            saveCart();
+            showToast(`<i class="fa-solid fa-check-circle"></i> «${product.title.substring(0,40)}…» добавлен в корзину!`);
+        }
+
+        function showToast(msg) {
+            const old = document.querySelector('.toast');
+            if(old) old.remove();
+            const t = document.createElement('div');
+            t.className = 'toast';
+            t.innerHTML = msg;
+            document.body.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
+        }
+
+        function renderProductsGrid() {
+            const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+            grid.innerHTML = products.map(p => {
+                const stars = Array.from({ length:5 }, (_,i) => {
+                    if(i < Math.floor(p.rating)) return '<i class="fa-solid fa-star"></i>';
+                    else if(i < p.rating) return '<i class="fa-solid fa-star-half-stroke"></i>';
+                    else return '<i class="fa-regular fa-star"></i>';
+                }).join('');
+                return `
+                    <div class="product-card">
+                        <div class="product-image-wrap">
+                            ${p.badge ? `<span class="product-badge ${p.badgeClass || ''}">${p.badge}</span>` : ''}
+                            <button class="wishlist-btn" onclick="event.stopPropagation();this.querySelector('i').classList.toggle('fa-solid');this.querySelector('i').classList.toggle('fa-regular');"><i class="fa-regular fa-heart"></i></button>
+                            <img src="${p.image}" alt="${p.title}" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-brand">${p.brand}</div>
+                            <div class="product-title">${p.title}</div>
+                            <div class="product-rating">${stars}<span>(${p.reviews})</span></div>
+                            <div class="product-price-row"><span class="product-price">${p.price.toLocaleString('ru-RU')} ₽</span>${p.oldPrice ? `<span class="product-old-price">${p.oldPrice.toLocaleString('ru-RU')} ₽</span>` : ''}</div>
+                            <button class="add-to-cart-btn" onclick="addToCart({ id: ${p.id}, title: '${p.title.replace(/'/g, "\\'")}', price: ${p.price}, image: '${p.image}' })"><i class="fa-solid fa-cart-plus"></i> В корзину</button>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
+        function showDiscCard() {
+            const container = document.getElementById('searchResultContainer');
+            container.innerHTML = `
+                <div class="disc-card">
+                    <img src="model/bbs_sr_02.jpg" alt="Легкосплавный диск R17 Ford Focus 2">
+                    <h2>Легкосплавный диск R17</h2>
+                    <div class="article">Артикул: AP-WHL-1890-FD</div>
+                    <div class="price"><span class="old-price">24 990 ₽</span> 18 990 ₽</div>
+                    <div class="stock">● В наличии – Готов к отправке</div>
+                    <p style="color: var(--gray-muted); margin-bottom: 20px;">Подходит для Ford Focus 2, Ford Mondeo, Volvo S40 (5x108)</p>
+                    <div class="hero-buttons" style="justify-content: center; gap: 12px;">
+                        <button class="btn-primary" onclick="addToCart({ id: 'disc_ford', title: 'Легкосплавный диск R17 для Ford Focus 2', price: 18990, image: 'model/bbs_sr_02.jpg' })"><i class="fa-solid fa-cart-plus"></i> Купить</button>
+                        <a href="ar.html" class="btn-outline"><i class="fa-solid fa-camera"></i> Примерить в AR</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const hero = document.getElementById('heroSection');
+            if(query.includes('диск') || query.includes('колесный диск') || query.includes('легкосплавный диск') || query.includes('wheel') || query.includes('тормозной диск') || query.includes('диск с суппортом') || query.includes('brake disc')) {
+                showDiscCard();
+                if (hero) hero.classList.add('hidden');
+                showToast(`<i class="fa-solid fa-magnifying-glass"></i> Найден легкосплавный диск для Ford Focus 2`);
+            } else {
+                const container = document.getElementById('searchResultContainer');
+                if (container) container.innerHTML = '';
+                if (hero) hero.classList.remove('hidden');
+                if(query !== "") {
+                    showToast(`<i class="fa-solid fa-magnifying-glass"></i> Поиск: «${query.substring(0,50)}» — показаны лидеры продаж`);
+                }
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            const container = document.getElementById('searchResultContainer');
+            if (container) container.innerHTML = '';
+            const hero = document.getElementById('heroSection');
+            if (hero) hero.classList.remove('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart();
+            renderProductsGrid();
+
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keydown', e => { if(e.key === 'Enter') performSearch(); });
+            document.getElementById('vinSearchBtn').addEventListener('click', () => {
+                const vin = prompt('Введите VIN-код:');
+                if(vin && vin.length >= 11) {
+                    document.getElementById('searchInput').value = 'VIN: ' + vin.toUpperCase();
+                    performSearch();
+                } else if(vin) alert('Введите корректный VIN');
+            });
+            document.getElementById('cartBtn').addEventListener('click', () => {
+                window.location.href = 'cart.html';
+            });
+            document.getElementById('tryArBtn').addEventListener('click', e => { e.preventDefault(); window.open('ar.html', '_blank'); });
+            document.getElementById('logoLink').addEventListener('click', (e) => { e.preventDefault(); resetSearch(); });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => { e.preventDefault(); resetSearch(); });
+            });
+            window.addEventListener('scroll', () => {
+                document.getElementById('topHeader').classList.toggle('scrolled', window.scrollY > 10);
+            });
+        });
+    </script>
+</body>
+</html>
